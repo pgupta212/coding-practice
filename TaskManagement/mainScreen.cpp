@@ -28,12 +28,15 @@ MainScreen::MainScreen(QWidget * parent) :
 void MainScreen::init()
 {
     // Create and set up the taskListView
+    // create DB
     QString dbPath = QDir::homePath() + "/Documents/tasks.db";
     taskDbManager  = std::make_shared<TaskDbManager>(dbPath);
     taskDbManager->init();
 
+    // create task List, which holds actual data
     taskList = new TaskList();
     taskList->createTasksLists(taskDbManager->getAllTask());
+    // update table with actual data
     taskListView->update(taskList);
 }
 
@@ -45,6 +48,7 @@ void MainScreen::slt_createBtnClicked()
     taskForm.setModal(true);
     int accepted = taskForm.exec();
 
+    // if dialog is accepted then update view
     if(accepted == QDialog::Accepted)
      {
         bool ok = taskDbManager->addTask(*newTask);
