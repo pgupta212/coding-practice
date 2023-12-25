@@ -9,6 +9,7 @@
 
 TaskDbManager::TaskDbManager(const QString & path)
 {
+    // Open Database connection
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(path);
 
@@ -24,6 +25,7 @@ TaskDbManager::TaskDbManager(const QString & path)
 
 TaskDbManager::~TaskDbManager()
 {
+    // CLose the connection before destroying the connection
     if(db.isOpen()) {
         qDebug() << ("Close connection");
         db.close();
@@ -41,10 +43,13 @@ bool TaskDbManager::init()
        return false;
     }
 
+    // as we have fixed number of queries, it would be a good idea to prepare the statement at once and reuse it as required.
+    // It helps to reduce the run time query execution.
     prepareAllStatement();
     return true;
 }
 
+// Bind values to the query to the name parameter, which is indicated by the :name, or :priority etc.
 void TaskDbManager::bindValue(PreparedStatement & preparedStmt, const Task & task)
 {
     for(int ind = 0; ind < preparedStmt.fields.size(); ind++) {
@@ -162,6 +167,7 @@ bool TaskDbManager::removeTask(int task_id)
     return false;
 }
 
+// Execute select query
 std::vector<Task *> TaskDbManager::executeSelectStmt(QSqlQuery & query)
 {
     std::vector<Task *> items;
