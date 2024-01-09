@@ -7,8 +7,10 @@ This repository is my personal coding playground where I experiment with algorit
    But if at all, if we need task management should be a web application like Jira then I would choose Angular or react UI framework with Non-SQL DB and node-js backend server. Mainly the real-time collaboration feature provided by frameworks like Angular or React, coupled with a NoSQL database and Node.js backend, contributes to a more interactive and responsive task management system and provides the collaborative feature.
 
 2. Clearly outline the steps to run your application locally.
+   Load /coding-practice/blob/main/TaskManagement/TaskManagement.pro in Qt creator, will load the whole project. Finally, Configure a project for the desired operating system. Or you can follow this document for more details https://doc.qt.io/qtcreator/creator-configuring-projects.html
+Once the project is configured run. 
    
-3. Work Breakdown: Provide a list of work tasks (e.g., like Jira ticket) derived from the product
+4. Work Breakdown: Provide a list of work tasks (e.g., like Jira ticket) derived from the product
   1. Create a task management project skeleton 
   2. Add Qt framework-related files and settings
   3. I would start by creating tickets for each UI screen like, all these tickets can be finished by use of dummy data. 
